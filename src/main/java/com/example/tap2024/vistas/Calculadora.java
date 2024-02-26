@@ -24,29 +24,44 @@ public class Calculadora extends Stage {
     }
 
     public void usarCalculadora(){
-        /*
+        CalculadoraLogica calcular = new CalculadoraLogica();
         String aRealizar = txtPantalla.getText();
         boolean valido = true;
         char operacion = 'a';
-        do{
-            valido = CheckInput.checkValidFormat(aRealizar);
+        valido = CheckInput.checkValidFormat(aRealizar);
             if(valido){
-                CheckInput.getOperand(aRealizar);
+                operacion = CheckInput.getOperand(aRealizar);
+                    switch (operacion) {
+                        case '+': {
+                            calcular.add(CheckInput.getOperatorA(txtPantalla.getText()), CheckInput.getOperatorB(txtPantalla.getText()));
+                            txtPantalla.setText(calcular.getAnswer());
+                        }
+                        break;
+                        case '-': {
+                            calcular.subtract(CheckInput.getOperatorA(txtPantalla.getText()), CheckInput.getOperatorB(txtPantalla.getText()));
+                            txtPantalla.setText(calcular.getAnswer());
+                        }
+                        break;
+                        case '*': {
+                            calcular.multiply(CheckInput.getOperatorA(txtPantalla.getText()), CheckInput.getOperatorB(txtPantalla.getText()));
+                            txtPantalla.setText(calcular.getAnswer());
+                        }
+                        break;
+                        case '/': {
+                            calcular.divide(CheckInput.getOperatorA(txtPantalla.getText()), CheckInput.getOperatorB(txtPantalla.getText()));
+                            if (calcular.getIsReal()) {
+                                txtPantalla.setText(calcular.getAnswer());
+                            } else {
+                                txtPantalla.setText("Division by 0 is not defined");
+                            }
+                        }
+                        break;
+                        default:
+                            ;
+                    }
+            }else {
+                txtPantalla.setText("Please type a proper input");
             }
-        }while(valido);
-        if(valido){
-            switch(operacion){
-                case '+':;
-                break;
-                case '+':;
-                break;
-                case '+':;
-                break;
-                case '+':;
-                break;
-                default:;
-            }
-        }*/
     }
 
     private void CrearUI() {
