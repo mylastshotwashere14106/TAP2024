@@ -24,6 +24,7 @@ public class Calculadora extends Stage {
     }
 
     public void usarCalculadora(){
+        /*
         String aRealizar = txtPantalla.getText();
         boolean valido = true;
         char operacion = 'a';
@@ -45,7 +46,7 @@ public class Calculadora extends Stage {
                 break;
                 default:;
             }
-        }
+        }*/
     }
 
     private void CrearUI() {

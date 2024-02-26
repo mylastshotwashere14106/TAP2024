@@ -83,7 +83,27 @@ public class CheckInput {
         return operand;
     }
 
-    public static String getOperators(){
+    public static String getOperatorA(String text){
+        String operatorA = "";
+        for (int i = 0; i < text.length(); i++) {
+            if(!((text.charAt(i) == '+') || (text.charAt(i) == '-') || (text.charAt(i) == '*') || (text.charAt(i) == '/'))){
+                operatorA = operatorA + text.charAt(i);
+            }else{
+                break;
+            }
+        }
+        return operatorA;
+    }
 
+    public static String getOperatorB(String text){
+        String operatorB = "";
+        for (int i = 0; i < text.length(); i++) {
+            if((text.charAt(i) == '+') || (text.charAt(i) == '-') || (text.charAt(i) == '*') || (text.charAt(i) == '/')){
+                for(int j = i+1;j<text.length();j++){
+                    operatorB = operatorB + text.charAt(j);
+                }
+            }
+        }
+        return operatorB;
     }
 }
