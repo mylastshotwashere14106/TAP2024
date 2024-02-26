@@ -23,6 +23,31 @@ public class Calculadora extends Stage {
         this.show();
     }
 
+    public void usarCalculadora(){
+        String aRealizar = txtPantalla.getText();
+        boolean valido = true;
+        char operacion = 'a';
+        do{
+            valido = CheckInput.checkValidFormat(aRealizar);
+            if(valido){
+                CheckInput.getOperand(aRealizar);
+            }
+        }while(valido);
+        if(valido){
+            switch(operacion){
+                case '+':;
+                break;
+                case '+':;
+                break;
+                case '+':;
+                break;
+                case '+':;
+                break;
+                default:;
+            }
+        }
+    }
+
     private void CrearUI() {
         txtPantalla = new TextField("0");
         gdpTeclado = new GridPane();
@@ -51,6 +76,7 @@ public class Calculadora extends Stage {
                 pos++;
             }
         }
+        arBotones[3][2].setOnAction(event -> usarCalculadora());
     }
 
     private void setValue(char simbolo) {
