@@ -1,5 +1,6 @@
 package com.example.tap2024;
 
+import com.example.tap2024.modelos.Conexion;
 import com.example.tap2024.vistas.Calculadora;
 import com.example.tap2024.vistas.CalculadoraLogica;
 import com.example.tap2024.vistas.CheckInput;
@@ -35,6 +36,7 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.show();
         stage.setMaximized(true);
+        Conexion.crearConexion();
     }
 
     private void CrearMenu() {
