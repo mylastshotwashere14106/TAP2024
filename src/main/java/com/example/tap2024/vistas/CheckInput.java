@@ -2,6 +2,13 @@ package com.example.tap2024.vistas;
 
 public class CheckInput {
 
+    public static boolean checkInt(String text){
+        return true;
+    }
+
+    public static boolean checkOdd(int number){
+        return true;
+    }
     public static boolean checkDouble(String num){
         int contPunt = 0;
         char temp = '0';

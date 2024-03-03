@@ -38,3 +38,11 @@
     -fx-background-color: #000;
     -fx-text-fill: black;
 }
+
+.button:hover{
+    -fx-background-color: blue;
+}
+
+.gridpane{
+    -fx-background-color:red;
+}

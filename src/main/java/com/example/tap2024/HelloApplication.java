@@ -1,10 +1,7 @@
 package com.example.tap2024;
 
 import com.example.tap2024.modelos.Conexion;
-import com.example.tap2024.vistas.Calculadora;
-import com.example.tap2024.vistas.CalculadoraLogica;
-import com.example.tap2024.vistas.CheckInput;
-import com.example.tap2024.vistas.Memorama;
+import com.example.tap2024.vistas.*;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -20,10 +17,13 @@ public class HelloApplication extends Application {
 
     private MenuBar mnbPrincipal;
     private Menu menParcial1, menParcial2, menSalir;
-    private MenuItem mitCalculadora, mitSalir, mitMemorama;
+    private MenuItem mitCalculadora, mitSalir, mitMemorama, mitCuadroMagico;
     private BorderPane bdpPanel;
     @Override
     public void start(Stage stage) throws IOException {
+        //CuadroMagicoLogica exe = new CuadroMagicoLogica(7);
+        //exe.showMagicSquare();
+
         CrearMenu();
         //FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
         //Scene scene = new Scene(fxmlLoader.load(), 320, 240);
@@ -37,6 +37,7 @@ public class HelloApplication extends Application {
         stage.show();
         stage.setMaximized(true);
         Conexion.crearConexion();
+//1105
     }
 
     private void CrearMenu() {
@@ -48,8 +49,11 @@ public class HelloApplication extends Application {
         mitMemorama = new MenuItem("Memorama");
         mitMemorama.setOnAction(event -> new Memorama());
 
+        mitCuadroMagico = new MenuItem("Cuadro magico");
+        mitCuadroMagico.setOnAction(event -> new CuadroMagico());
+
         menParcial1 = new Menu("Primer Parcial");
-        menParcial1.getItems().addAll(mitCalculadora,mitMemorama);
+        menParcial1.getItems().addAll(mitCalculadora,mitMemorama, mitCuadroMagico);
 
         /* Menu segundo parcial */
         menParcial2 = new Menu("Segundo Parcial");
