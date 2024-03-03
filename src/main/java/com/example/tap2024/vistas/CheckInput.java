@@ -1,19 +1,42 @@
 package com.example.tap2024.vistas;
 
 public class CheckInput {
-
-    public static boolean checkInt(String text){
-        return true;
+    public static boolean checkInt(String num){
+        boolean result = true;
+        if(num == null || (num.length() == 0)){
+            result = false;
+        }else{
+            for (int i = 0; i < num.length(); i++) {
+                if (((num.charAt(i) == '0') ||
+                        (num.charAt(i) == '1') ||
+                        (num.charAt(i) == '2') ||
+                        (num.charAt(i) == '3') ||
+                        (num.charAt(i) == '4') ||
+                        (num.charAt(i) == '5') ||
+                        (num.charAt(i) == '6') ||
+                        (num.charAt(i) == '7') ||
+                        (num.charAt(i) == '8') ||
+                        (num.charAt(i) == '9'))){
+                    result = true;
+                }else{
+                    result = false;
+                    break;
+                }
+            }
+        }
+        return result;
     }
 
-    public static boolean checkOdd(int number){
-        return true;
+    public static boolean checkOdd(int number) {
+        boolean result = true;
+        if(number % 2 == 0)result = false;
+        return result;
     }
     public static boolean checkDouble(String num){
         int contPunt = 0;
         char temp = '0';
         boolean result = false;
-        if((num == null) || (num.length()==0)){
+        if((num == null) || (num.length() == 0)){
             result = false;
         }else {
             if ((num.charAt(0) != '.') && (num.charAt(num.length() - 1) != '.')) {

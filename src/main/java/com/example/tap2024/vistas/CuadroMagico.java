@@ -27,6 +27,7 @@ public class CuadroMagico extends Stage {
         CrearUI();
         layout = new VBox(magicSquare,create,size);
         Scene scene = new Scene(layout);
+        scene.getStylesheets().add(getClass().getResource("/estilos/cuadromagico.css").toString());
         this.setTitle("Cuadro Mágico");
         this.setScene(scene);
         this.show();
@@ -36,11 +37,14 @@ public class CuadroMagico extends Stage {
         magicSquare = new GridPane();
         size = new TextField("3");
         create = new Button("Crear");
+        create.setPrefSize(100,25);
         create.setOnAction(event -> {
             if(!CheckInput.checkInt(size.getText())){
                 size.setText("Type a number you dummy");
-            }else if(!CheckInput.checkOdd(Integer.parseInt(size.getText()))){
+            }else if(!CheckInput.checkOdd(Integer.parseInt(size.getText()))) {
                 size.setText("Type an odd number you dummy");
+            }else if(Integer.parseInt(size.getText()) < 3){
+                size.setText("You need at least a 3 dude");
             }else{
                 cuadro = new CuadroMagicoLogica(Integer.parseInt(size.getText()));
                 cuadro.showMagicSquareGUI(magicSquare);
