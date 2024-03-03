@@ -38,7 +38,3 @@
     -fx-background-color: #000;
     -fx-text-fill: black;
 }
-
-.button:hover{
-    -fx-background-color: rgb(90,70,10);
-}
