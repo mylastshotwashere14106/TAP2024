@@ -5,8 +5,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Conexion {
-    static private String DB = "takeshis";
-    static private String USER = "adminTakeshis";
+    static private String DB = "sys";
+    static private String USER = "root";
     static private String PWD = "1234";
     static public Connection connection;
 
