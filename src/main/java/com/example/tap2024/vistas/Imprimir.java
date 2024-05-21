@@ -28,6 +28,7 @@ public class Imprimir extends Thread{
                     throw new RuntimeException(e);
                 }
             }
+            //System.out.println("Imprimi todo lo que habia bro");
         }
     }
 

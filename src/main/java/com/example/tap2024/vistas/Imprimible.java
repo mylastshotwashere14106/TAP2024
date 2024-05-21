@@ -59,7 +59,7 @@ public class Imprimible extends Thread{
                 if(progreso == 1.0){
                     finalizado = true;
                 }else {
-                    Thread.sleep(1000 * noHojas);
+                    Thread.sleep(1 * noHojas);
                     progreso = progreso + 1/noHojas;
                     progressBar.setProgress(progreso);
                 }
