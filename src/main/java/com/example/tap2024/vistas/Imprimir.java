@@ -5,6 +5,15 @@ import java.util.ArrayList;
 public class Imprimir extends Thread{
 
     private static int noArchivoInt = 0;
+
+    public boolean isContinuar() {
+        return continuar;
+    }
+
+    public void setContinuar(boolean continuar) {
+        this.continuar = continuar;
+    }
+
     private boolean continuar = true;
     private static int noArchivo = 0;
     ArrayList<Imprimible> porImprimir = new ArrayList<>();
@@ -24,6 +33,7 @@ public class Imprimir extends Thread{
 
     public void addTask(){
         porImprimir.add(new Imprimible(noArchivoInt));
+        noArchivoInt++;
     }
 
 }
