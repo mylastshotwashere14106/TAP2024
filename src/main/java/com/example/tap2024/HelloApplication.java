@@ -17,7 +17,7 @@ public class HelloApplication extends Application {
 
     private MenuBar mnbPrincipal;
     private Menu menParcial1, menParcial2, menSalir;
-    private MenuItem mitCalculadora, mitSalir, mitMemorama, mitCuadroMagico;
+    private MenuItem mitCalculadora, mitSalir, mitMemorama, mitCuadroMagico, mitImpresora;
     private BorderPane bdpPanel;
     @Override
     public void start(Stage stage) throws IOException {
@@ -54,7 +54,12 @@ public class HelloApplication extends Application {
         menParcial1.getItems().addAll(mitCalculadora,mitMemorama, mitCuadroMagico);
 
         /* Menu segundo parcial */
+
+        mitImpresora = new MenuItem("Impresora");
+        mitImpresora.setOnAction(event -> new Impresora());
+
         menParcial2 = new Menu("Segundo Parcial");
+        menParcial1.getItems().addAll(mitImpresora);
 
         /* Menu salir */
         mitSalir = new MenuItem("Salir");
