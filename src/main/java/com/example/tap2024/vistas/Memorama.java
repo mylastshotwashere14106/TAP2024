@@ -3,6 +3,7 @@ package com.example.tap2024.vistas;
 import javafx.application.Platform;
 import javafx.scene.ImageCursor;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -11,6 +12,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.util.Timer;
@@ -90,8 +92,12 @@ public class Memorama extends Stage {
                             public void run() {
                                 if(turno % 2 == 0) {
                                     timer2l.setText(String.valueOf(timer2lf));
+                                    player2.setStyle("-fx-text-fill: green;");
+                                    player1.setStyle("-fx-text-fill: red;");
                                 }else{
                                     timer1l.setText(String.valueOf(timer1lf));
+                                    player1.setStyle("-fx-text-fill: green;");
+                                    player2.setStyle("-fx-text-fill: red;");
                                 }
                             }
                         });
@@ -144,6 +150,8 @@ public class Memorama extends Stage {
             tarAntY = -1;
             score1 = 0;
             score2 = 0;
+            score1l.setText("Score: " + score1);
+            score2l.setText("Score: " + score2);
             timer1 = timePerTurn;
             timer2 = timePerTurn;
             turno = 1;
@@ -211,12 +219,18 @@ public class Memorama extends Stage {
                 tarAntY = -1;
                 if(turno % 2 == 0){
                     score2 = score2 + 1;
-                    score2l.setText(String.valueOf(score2));
+                    score2l.setText("Score: " + String.valueOf(score2));
                 }else{
                     score1 = score1 + 1;
-                    score1l.setText(String.valueOf(score1));
+                    score1l.setText("Score: " + String.valueOf(score1));
                 }
             }else{
+                if(turno % 2 == 0){
+                    timer2 = timePerTurn;
+                }else{
+                    timer1 = timePerTurn;
+                }
+                turno = turno + 1;
                 tempRealImage = new ImageView(getClass().getResource("/images/lel.jpg").toString());
                 tempRealImage.setFitWidth(200);
                 tempRealImage.setFitHeight(150);
