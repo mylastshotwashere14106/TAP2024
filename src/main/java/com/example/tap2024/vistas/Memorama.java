@@ -17,9 +17,10 @@ import java.util.Timer;
 
 public class Memorama extends Stage {
 
-    private boolean banderaTurno = true;
-    private String tarjetaAnterior = "";
+    private int tarAntX = -1, tarAntY = -1;
     private ImageView standardImage;
+    private ImageView tempRealImage;
+    private int victoria = 100;
 
     private int turno = 1;
     private Scene escena;
@@ -53,23 +54,48 @@ public class Memorama extends Stage {
         Thread taskThread = new Thread(new Runnable() {
             @Override
             public void run() {
-                for(int i=0; i<100; i++){
+                for(int i=0; i <= timePerTurn; i++){
 
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    timer1 = timer1 - 1;
-                    final int timer1lf = timer1;
-
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            timer1l.setText(String.valueOf(timer1lf));
+                    if(score1 == victoria){
+                        pares.setText("First player wins!");
+                    }else if(score2 == victoria){
+                        pares.setText("Second player wins!");
+                    }else{
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
                         }
-                    });
+
+                        if(i == timePerTurn){
+                            if(turno % 2 == 0) {
+                                timer2 = timePerTurn;
+                            }else{
+                                timer1 = timePerTurn;
+                            }
+                            turno = turno + 1;
+                            i = 0;
+                        }
+
+                        if(turno % 2 == 0) {
+                            timer2 = timer2 - 1;
+                        }else{
+                            timer1 = timer1 - 1;
+                        }
+                        final int timer1lf = timer1;
+                        final int timer2lf = timer2;
+
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                if(turno % 2 == 0) {
+                                    timer2l.setText(String.valueOf(timer2lf));
+                                }else{
+                                    timer1l.setText(String.valueOf(timer1lf));
+                                }
+                            }
+                        });
+                    }
                 }
             }
         });
@@ -114,11 +140,14 @@ public class Memorama extends Stage {
             int posx = 0;
             int posy = 0;
             int cont = 0;
+            tarAntX = -1;
+            tarAntY = -1;
             score1 = 0;
             score2 = 0;
             timer1 = timePerTurn;
             timer2 = timePerTurn;
             turno = 1;
+            victoria = tempSize;
             for (int i = 0; i < tempSize; ) {
                 posx = (int) (Math.random() * tempSize);
                 posy = (int) (Math.random() * 2);
@@ -132,6 +161,7 @@ public class Memorama extends Stage {
                     imagesForButton[posx][posy].setFitHeight(150);
                     imagesForButton[posx][posy].setFitWidth(200);
                     //buttons[posx][posy].setGraphic(imagesForButton[posx][posy]);
+
 
                     standardImage = new ImageView(getClass().getResource("/images/lel.jpg").toString());
                     standardImage.setFitHeight(150);
@@ -157,8 +187,48 @@ public class Memorama extends Stage {
         }
     }
 
-    public void presionarCarta(int posx, int posy){
 
+    public void presionarCarta(int posx, int posy){
+        tempRealImage = new ImageView(getClass().getResource("/images/lel.jpg").toString());
+        tempRealImage.setFitWidth(200);
+        tempRealImage.setFitHeight(150);
+        if(tarAntX == -1 || tarAntY == -1) {
+            tempRealImage = new ImageView(getClass().getResource("/images/" + images[posx][posy]).toString());
+            tempRealImage.setFitWidth(200);
+            tempRealImage.setFitHeight(150);
+            buttons[posx][posy].setGraphic(tempRealImage);
+            tarAntX = posx;
+            tarAntY = posy;
+        }else{
+            tempRealImage = new ImageView(getClass().getResource("/images/" + images[posx][posy]).toString());
+            tempRealImage.setFitWidth(200);
+            tempRealImage.setFitHeight(150);
+            buttons[posx][posy].setGraphic(tempRealImage);
+            if(images[posx][posy].equals(images[tarAntX][tarAntY])) {
+                buttons[tarAntX][tarAntY].setGraphic(imagesForButton[tarAntX][tarAntY]);
+                buttons[posx][posy].setGraphic(imagesForButton[posx][posy]);
+                tarAntX = -1;
+                tarAntY = -1;
+                if(turno % 2 == 0){
+                    score2 = score2 + 1;
+                    score2l.setText(String.valueOf(score2));
+                }else{
+                    score1 = score1 + 1;
+                    score1l.setText(String.valueOf(score1));
+                }
+            }else{
+                tempRealImage = new ImageView(getClass().getResource("/images/lel.jpg").toString());
+                tempRealImage.setFitWidth(200);
+                tempRealImage.setFitHeight(150);
+                buttons[posx][posy].setGraphic(tempRealImage);
+                tempRealImage = new ImageView(getClass().getResource("/images/lel.jpg").toString());
+                tempRealImage.setFitWidth(200);
+                tempRealImage.setFitHeight(150);
+                buttons[tarAntX][tarAntY].setGraphic(tempRealImage);
+                tarAntX = -1;
+                tarAntY = -1;
+            }
+        }
     }
 
 }
