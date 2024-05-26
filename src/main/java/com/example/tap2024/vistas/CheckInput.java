@@ -1,6 +1,17 @@
 package com.example.tap2024.vistas;
 
 public class CheckInput {
+
+    public static void waitTime(Thread thread, int time){
+        try {
+            for(int i = 0; i < time; i++) {
+                Thread.sleep(1000);
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+    }
+
     public static boolean checkInt(String num){
         boolean result = true;
         if(num == null || (num.length() == 0)){
