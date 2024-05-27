@@ -202,7 +202,6 @@ public class Memorama extends Stage {
                     imagesForButton[posx][posy].setFitWidth(240);
                     //buttons[posx][posy].setGraphic(imagesForButton[posx][posy]);
 
-
                     standardImage = new ImageView(getClass().getResource("/images/lel.jpg").toString());
                     standardImage.setFitHeight(200);
                     standardImage.setFitWidth(240);

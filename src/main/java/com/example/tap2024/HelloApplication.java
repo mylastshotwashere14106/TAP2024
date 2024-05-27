@@ -59,7 +59,7 @@ public class HelloApplication extends Application {
         mitImpresora.setOnAction(event -> new Impresora());
 
         menParcial2 = new Menu("Segundo Parcial");
-        menParcial1.getItems().addAll(mitImpresora);
+        menParcial2.getItems().addAll(mitImpresora);
 
         /* Menu salir */
         mitSalir = new MenuItem("Salir");
