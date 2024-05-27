@@ -9,12 +9,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
-
+import org.kordamp.bootstrapfx.BootstrapFX;
+//import org.kordamp.bootstrapfx.BootstrapFX;
+//import org.kordamp.bootstrapfx.scene.layout.Panel;
 import java.util.Timer;
 
 public class Memorama extends Stage {
@@ -49,6 +49,7 @@ public class Memorama extends Stage {
 
     public Memorama(){
         CrearUI();
+        escena.getStylesheets().add(BootstrapFX.bootstrapFXStylesheet());
         this.setTitle("Memorama :)");
         this.setScene(escena);
         this.show();
@@ -92,12 +93,24 @@ public class Memorama extends Stage {
                             public void run() {
                                 if(turno % 2 == 0) {
                                     timer2l.setText(String.valueOf(timer2lf));
-                                    player2.setStyle("-fx-text-fill: green;");
-                                    player1.setStyle("-fx-text-fill: red;");
+                                    timer2l.getStyleClass().clear();
+                                    timer2l.getStyleClass().add("lbl-warning");
+                                    player1.getStyleClass().clear();
+                                    player2.getStyleClass().clear();
+                                    player2.getStyleClass().add("lbl-success");
+                                    player1.getStyleClass().add("lbl-danger");
+                                    //player2.setStyle("-fx-text-fill: green;");
+                                    //player1.setStyle("-fx-text-fill: red;");
                                 }else{
                                     timer1l.setText(String.valueOf(timer1lf));
-                                    player1.setStyle("-fx-text-fill: green;");
-                                    player2.setStyle("-fx-text-fill: red;");
+                                    timer1l.getStyleClass().clear();
+                                    timer1l.getStyleClass().add("lbl-warning");
+                                    player1.getStyleClass().clear();
+                                    player2.getStyleClass().clear();
+                                    player1.getStyleClass().add("lbl-default");
+                                    player2.getStyleClass().add("lbl-danger");
+                                    //player1.setStyle("-fx-text-fill: green;");
+                                    //player2.setStyle("-fx-text-fill: red;");
                                 }
                             }
                         });
@@ -115,25 +128,44 @@ public class Memorama extends Stage {
         //Mezclar pares boton y texto
         pares = new TextField("Numero de pares");
         mixButton = new Button("Iniciar juego");
+        mixButton.getStyleClass().clear();
+        mixButton.getStyleClass().add("btn-info");
         mixButton.setOnAction(event -> revolverCartas());
         mixParesLayout = new HBox(pares, mixButton);
         //Player 1
         player1 = new Label("Player 1");
+        player1.getStyleClass().clear();
+        player1.getStyleClass().add("lbl-success");
         score1l = new Label(String.valueOf(score1));
+        score1l.getStyleClass().clear();
+        score1l.getStyleClass().add("lbl-primary");
         player1HLay = new HBox(player1, score1l);
         timer1l = new Label("60");
+        timer1l.getStyleClass().clear();
+        timer1l.getStyleClass().add("lbl-warning");
         player1VLay = new VBox(player1HLay, timer1l);
         //Player 2
         player2 = new Label("Player 2");
+        player1.getStyleClass().clear();
+        player1.getStyleClass().add("lbl-danger");
         score2l = new Label(String.valueOf(score2));
+        score2l.getStyleClass().clear();
+        score2l.getStyleClass().add("lbl-primary");
         player2HLay = new HBox(player2, score2l);
         timer2l = new Label("60");
+        timer2l.getStyleClass().clear();
+        timer2l.getStyleClass().add("lbl-warning");
         player2VLay = new VBox(player2HLay, timer2l);
         //Main layout V
         mainLayout = new VBox(mixParesLayout, player1VLay, player2VLay);
         //Main layout
         mainLayoutFR = new HBox(gdpJuego, mainLayout);
-        escena = new Scene(mainLayoutFR);
+        BackgroundImage bg= new BackgroundImage(new Image(getClass().getResource("/images/pinkusmaximus.png").toString(),960,720,true,false),
+        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundSize.DEFAULT);
+        Background bgFR = new Background(bg);
+        mainLayoutFR.setBackground(bgFR);
+        escena = new Scene(mainLayoutFR, 960, 720);
     }
 
     private void revolverCartas() {
@@ -166,17 +198,17 @@ public class Memorama extends Stage {
                     imagesForButton[posx][posy] = new ImageView(
                             getClass().getResource("/images/" + nImg[i]).toString()
                     );
-                    imagesForButton[posx][posy].setFitHeight(150);
-                    imagesForButton[posx][posy].setFitWidth(200);
+                    imagesForButton[posx][posy].setFitHeight(200);
+                    imagesForButton[posx][posy].setFitWidth(240);
                     //buttons[posx][posy].setGraphic(imagesForButton[posx][posy]);
 
 
                     standardImage = new ImageView(getClass().getResource("/images/lel.jpg").toString());
-                    standardImage.setFitHeight(150);
-                    standardImage.setFitWidth(200);
+                    standardImage.setFitHeight(200);
+                    standardImage.setFitWidth(240);
 
                     buttons[posx][posy].setGraphic(standardImage);
-                    buttons[posx][posy].setPrefSize(200, 150);
+                    buttons[posx][posy].setPrefSize(240, 200);
 
                     final int posxt = posx;
                     final int posyt = posy;
@@ -198,19 +230,19 @@ public class Memorama extends Stage {
 
     public void presionarCarta(int posx, int posy){
         tempRealImage = new ImageView(getClass().getResource("/images/lel.jpg").toString());
-        tempRealImage.setFitWidth(200);
-        tempRealImage.setFitHeight(150);
+        tempRealImage.setFitWidth(240);
+        tempRealImage.setFitHeight(200);
         if(tarAntX == -1 || tarAntY == -1) {
             tempRealImage = new ImageView(getClass().getResource("/images/" + images[posx][posy]).toString());
-            tempRealImage.setFitWidth(200);
-            tempRealImage.setFitHeight(150);
+            tempRealImage.setFitWidth(240);
+            tempRealImage.setFitHeight(200);
             buttons[posx][posy].setGraphic(tempRealImage);
             tarAntX = posx;
             tarAntY = posy;
         }else{
             tempRealImage = new ImageView(getClass().getResource("/images/" + images[posx][posy]).toString());
-            tempRealImage.setFitWidth(200);
-            tempRealImage.setFitHeight(150);
+            tempRealImage.setFitWidth(240);
+            tempRealImage.setFitHeight(200);
             buttons[posx][posy].setGraphic(tempRealImage);
             if(images[posx][posy].equals(images[tarAntX][tarAntY])) {
                 buttons[tarAntX][tarAntY].setGraphic(imagesForButton[tarAntX][tarAntY]);
@@ -220,9 +252,13 @@ public class Memorama extends Stage {
                 if(turno % 2 == 0){
                     score2 = score2 + 1;
                     score2l.setText("Score: " + String.valueOf(score2));
+                    score2l.getStyleClass().clear();
+                    score2l.getStyleClass().add("lbl-primary");
                 }else{
                     score1 = score1 + 1;
                     score1l.setText("Score: " + String.valueOf(score1));
+                    score1l.getStyleClass().clear();
+                    score1l.getStyleClass().add("lbl-primary");
                 }
             }else{
                 if(turno % 2 == 0){
@@ -232,12 +268,12 @@ public class Memorama extends Stage {
                 }
                 turno = turno + 1;
                 tempRealImage = new ImageView(getClass().getResource("/images/lel.jpg").toString());
-                tempRealImage.setFitWidth(200);
-                tempRealImage.setFitHeight(150);
+                tempRealImage.setFitWidth(240);
+                tempRealImage.setFitHeight(200);
                 buttons[posx][posy].setGraphic(tempRealImage);
                 tempRealImage = new ImageView(getClass().getResource("/images/lel.jpg").toString());
-                tempRealImage.setFitWidth(200);
-                tempRealImage.setFitHeight(150);
+                tempRealImage.setFitWidth(240);
+                tempRealImage.setFitHeight(200);
                 buttons[tarAntX][tarAntY].setGraphic(tempRealImage);
                 tarAntX = -1;
                 tarAntY = -1;

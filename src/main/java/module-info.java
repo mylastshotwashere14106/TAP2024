@@ -8,4 +8,5 @@ module com.example.tap2024 {
     requires java.sql;
     //requires mysql.connector.java;
     requires mariadb.java.client;
+    requires org.kordamp.bootstrapfx.core;
 }
