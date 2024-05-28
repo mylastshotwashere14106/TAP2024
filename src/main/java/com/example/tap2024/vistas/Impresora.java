@@ -4,8 +4,8 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.control.cell.PropertyValueFactory;
 import java.util.ArrayList;
@@ -109,7 +109,7 @@ public class Impresora extends Stage {
         agregar = new Button("Agregar");
         agregar.setOnAction(even -> addElementToTable());
 
-        apagar = new Button("Apagar");
+        apagar = new Button("Apagar/Encender");
         //apagar.setOnAction(event -> deleteElementFromTable());
         apagar.setOnAction(event -> apagarEncender());
 
@@ -117,7 +117,14 @@ public class Impresora extends Stage {
 
         mainLayout = new VBox(tabla, progress, botones);
 
+        BackgroundImage bg= new BackgroundImage(new Image(getClass().getResource("/images/pinkusmaximus.png").toString(),800,600,true,false),
+        BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.DEFAULT,
+        BackgroundSize.DEFAULT);
+        Background bgFR = new Background(bg);
+        mainLayout.setBackground(bgFR);
+
         scene = new Scene(mainLayout);
+
         /*
         add = new Button("Agregar tarea");
         add.setOnAction(event -> addElementToTable());
@@ -150,7 +157,7 @@ public class Impresora extends Stage {
     public void addElementToTable(){
 
         int noTemp = noTareas;
-        int noHojasTemp = (int) (Math.random() * 10);
+        int noHojasTemp = ((int) (Math.random() * 99)) + 1;
         String horaTemp = Calendar.getInstance().getTime().toString();
         String nomTemp = CheckInput.withoutSpaces(horaTemp) + CheckInput.generateExtension();
 
