@@ -2,6 +2,7 @@ package com.example.tap2024;
 
 import com.example.tap2024.modelos.Conexion;
 import com.example.tap2024.vistas.*;
+import com.example.tap2024.vistas.Impresion;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

@@ -2,14 +2,31 @@ package com.example.tap2024.vistas;
 
 public class CheckInput {
 
-    public static void waitTime(Thread thread, int time){
-        try {
-            for(int i = 0; i < time; i++) {
-                Thread.sleep(1000);
+    public static String withoutSpaces(String text){
+        String newText = "";
+        for(int letter = 0; letter < text.length(); letter++){
+            if(text.charAt(letter) != ' '){
+                newText = newText + text.charAt(letter);
             }
-        }catch(Exception e){
-            e.printStackTrace();
         }
+        return newText;
+    }
+
+    public static String generateExtension(){
+        String extension = "";
+        int extensionCase = (int) (Math.random() * 4);
+        switch(extensionCase){
+            case 0:extension = ".pdf";
+            break;
+            case 1:extension = ".csv";
+            break;
+            case 2:extension = ".txt";
+            break;
+            case 3:extension = ".dat";
+            break;
+            default:extension = ".bin";
+        }
+        return extension;
     }
 
     public static boolean checkInt(String num){
